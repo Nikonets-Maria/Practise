@@ -16,7 +16,7 @@ function AllCategoriesPage() {
       <div>
           <h4>AllCategoriesPage</h4>
           <div>
-          <ul>
+          <ul className="categoriesList">
             {categories.map(categori => (
               <li
                 key={categori.id}

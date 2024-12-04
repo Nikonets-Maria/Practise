@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories, fetchHomeCategories } from "../asyncActions/data";
 import { useEffect } from "react";
+import OffForm from "../components/OffForm";
 
 
 
@@ -18,13 +19,19 @@ function HomePage() {
     return (
       <div>
           
-          <div className="HomeHeader">
+          <div className="baner">
             <h1>Amazing Discounts on Garden Products!</h1>
+            
             <button>Check out</button>
           </div>
-          <div>
-            <h2>Categories</h2>
-            <ul>
+          <div className="categoriesListHome">
+            
+            <div className="lineBtn">
+              <h2>Categories</h2>
+              <hr className="line"></hr>
+              <button className="categoriBtn">All categories</button>
+            </div>
+            <ul className="categoriesList">
             {categories.map(categori => (
               <li
                 key={categori.id}
@@ -34,11 +41,10 @@ function HomePage() {
               </li>
             ))}
           </ul>
-            <hr></hr>
-            All categories
+            
           </div>
           <div>
-            5% form
+            <OffForm/>
           </div>
           <div>
             sale

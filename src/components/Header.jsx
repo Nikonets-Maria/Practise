@@ -1,12 +1,14 @@
 import { NavLink } from "react-router-dom";
 
+import logoImg from '../images/logo.png'
+import cartImg from '../images/emptyCart.png'
 
 
 function Header() {
 
     return (
       <div className="header">
-          <div className="logo"></div>
+          <img width={40} src={logoImg}/>
           <ul className="menu_wrapper">
             <NavLink className={({isActive}) => isActive ? 'active' : '' } to={'/'}><li>Main Page</li></NavLink>
             <NavLink className={({isActive}) => isActive ? 'active' : '' } to={'/allcategories'}><li>Categories</li></NavLink>
@@ -14,7 +16,7 @@ function Header() {
             <NavLink className={({isActive}) => isActive ? 'active' : '' } to={'/categoritem'}><li>All sales</li></NavLink>
             <NavLink className={({isActive}) => isActive ? 'active' : '' } to={'/cart'}><li>Cart</li></NavLink>
            </ul>
-           <div className="cart"></div>
+           <img width={30} src={cartImg}/>
 
       </div>
     );
