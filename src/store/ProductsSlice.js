@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    data: [
-        {id:101, title: "smt"}
-    ]
+    data: [],
+    category:''
 }
 
 const productsSlice = createSlice({
@@ -12,8 +11,18 @@ const productsSlice = createSlice({
     reducers: {
         categoriesHome(state, action){
             state.data = action.payload.slice(0, 4)
-        },        
+        },
+        categoriesProducts(state, action){
+            state.data = action.payload
+            // .filter(categori => categori.categoryId === action.payload)
+        },         
         categoriesList(state, action){
+            state.data = action.payload
+        },
+        productsList(state, action){
+            state.data = action.payload
+        },
+        productItem(state, action){
             state.data = action.payload
         }
     }
@@ -23,6 +32,9 @@ export default productsSlice.reducer
 
 export const {
     categoriesList,
-    categoriesHome
+    categoriesHome,
+    categoriesProducts,
+    productsList,
+    productItem
     
 } = productsSlice.actions

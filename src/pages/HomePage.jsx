@@ -2,11 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories, fetchHomeCategories } from "../asyncActions/data";
 import { useEffect } from "react";
 import OffForm from "../components/OffForm";
+import { useNavigate } from "react-router-dom";
 
 
 
 function HomePage() {
 
+  const navigate = useNavigate()
   const categories = useSelector(store => store.products.data)
 
   const dispatch = useDispatch()
@@ -29,7 +31,7 @@ function HomePage() {
             <div className="lineBtn">
               <h2>Categories</h2>
               <hr className="line"></hr>
-              <button className="categoriBtn">All categories</button>
+              <button onClick={() => navigate('/allcategories')} className="categoriBtn" >All categories</button>
             </div>
             <ul className="categoriesList">
             {categories.map(categori => (
@@ -47,7 +49,8 @@ function HomePage() {
             <OffForm/>
           </div>
           <div>
-            sale
+            <h1>sale</h1>
+            
           </div>
       </div>
     );

@@ -1,9 +1,11 @@
 import { useEffect } from "react";
-import { fetchCategories } from "../asyncActions/data";
+import { fetchCategories, fetchProductsFromCategori } from "../asyncActions/data";
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom";
 
 function AllCategoriesPage() {
 
+  const navigate = useNavigate()
   const categories = useSelector(store => store.products.data)
 
   const dispatch = useDispatch()
@@ -20,7 +22,11 @@ function AllCategoriesPage() {
             {categories.map(categori => (
               <li
                 key={categori.id}
-              >
+                onClick={() =>{
+                  dispatch(fetchProductsFromCategori(categori.id))
+                  navigate('/products/all')
+                }}
+                >
                 {categori.title}
                 <img width={250} src={'http://localhost:3333'+categori.image}/>
               </li>

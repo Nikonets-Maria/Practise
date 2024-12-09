@@ -1,8 +1,9 @@
 function ProductItemPage() {
     return (
       <div>
-          ProductItemPage
-          Карточка товара
+        <p>ProductItemPage
+        Карточка товара</p>
+          
       </div>
     );
   }

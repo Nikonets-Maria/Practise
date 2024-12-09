@@ -20,13 +20,13 @@ function App() {
         <Routes>
             <Route path="/" element={<HomePage/>}/>
             <Route path="/allcategories" element={<AllCategoriesPage/>}/>
-            <Route path="/categoritem" element={<ProductsFromCategoriPage/>}/>
+            <Route path="/products/category" element={<ProductsFromCategoriPage type='category'/>}/>
+            <Route path="/products/sale" element={<ProductsFromCategoriPage type='sale'/>}/>
+            <Route path="/products/all" element={<ProductsFromCategoriPage type='all'/>}/>
             <Route path="/cart" element={<CartPage/>}/>
             <Route path="*" element={<NotFoundPage/>}/>
             <Route path="/products/:id" element={<ProductItemPage/>}/>
-
-        </Routes>
-        
+        </Routes> 
         <Footer/>
       </div>
     </Provider>
