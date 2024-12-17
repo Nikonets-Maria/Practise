@@ -24,7 +24,7 @@ function AllCategoriesPage() {
                 key={categori.id}
                 onClick={() =>{
                   dispatch(fetchProductsFromCategori(categori.id))
-                  navigate('/products/all')
+                  // navigate('/products/all')
                 }}
                 >
                 {categori.title}

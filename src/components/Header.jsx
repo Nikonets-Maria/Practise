@@ -12,7 +12,7 @@ function Header() {
       <div className="header">
           <img onClick={() => navigate('/')} width={40} src={logoImg}/>
           <ul className="menu_wrapper">
-            <NavLink className={({isActive}) => isActive ? 'active' : '' } to={'/'}><li>Main Page</li></NavLink>
+            <NavLink className={({isActive}) => isActive ? 'active' : '' } to={'/' }><li>Main Page</li></NavLink>
             <NavLink className={({isActive}) => isActive ? 'active' : '' } to={'/allcategories'}><li>Categories</li></NavLink>
             <NavLink className={({isActive}) => isActive ? 'active' : '' } to={'/products/all'}><li>All products</li></NavLink>
             <NavLink className={({isActive}) => isActive ? 'active' : '' } to={'/products/sale'}><li>All sales</li></NavLink>

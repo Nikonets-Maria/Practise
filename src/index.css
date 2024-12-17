@@ -11,8 +11,20 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
+body{
+  width: 100%;
+
+}
+.mainContent{
+  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 95%;
+}
 
 .header {
+  width: 98%;
   height: 5%;
   display: flex;
   justify-content: space-evenly;
@@ -28,26 +40,45 @@
 }
 
 .offForm{
+
   display: flex;
-  height: 500px;
-  background-color: #339933;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#0B710B, #339933);
   color: #FFFFFF;
   .discountForm{
-    flex-direction: row-reverse; 
-
+    display: flex;
+    justify-content:end;
     img{
-      align-items: flex-end;
-      width:748px ;
-      height: 360px;
+      width: 70%;
     }
-      .discountAutoForm{
-        background-color: #20d8c9;
-      }
-  }
 
-  
+  } 
 
 }
+
+.discountAutoForm{
+  border: none;
+  width: 50%;
+  margin: 10px;
+  button{
+    background-color: #FFFFFF;
+    color: black;
+  }
+}
+
+input{
+  color: #FFFFFF;
+  border: #FFFFFF 1px;
+  border-radius: 10px;
+  width: 90%;
+  height: 50px;
+  margin: 7px;
+  
+}
+
+
 
 .baner{
   background-image: url('./images/home.jpg');
@@ -119,13 +150,24 @@ button{
   
 }
 
-.categoriesList{
+.saleList{
   display: flex;
+  align-items: center;
   flex-direction: row;
   gap: 16px;
   img{
-    width: auto;
-    height: 150px;
+    width: 9em;
+    border-radius: 5%;
+  }
+}
+
+.categoriesList{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 16px;
+  img{
+    width: 9em;
     border-radius: 5%;
   }
 }

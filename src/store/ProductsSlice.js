@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     data: [],
-    category:''
+    category:[],
+    product: []
 }
 
 const productsSlice = createSlice({
@@ -17,12 +18,15 @@ const productsSlice = createSlice({
             // .filter(categori => categori.categoryId === action.payload)
         },         
         categoriesList(state, action){
-            state.data = action.payload
+            state.category = action.payload
         },
         productsList(state, action){
             state.data = action.payload
         },
         productItem(state, action){
+            state.product = action.payload
+        },
+        saleProducts(state, action){
             state.data = action.payload
         }
     }
@@ -35,6 +39,7 @@ export const {
     categoriesHome,
     categoriesProducts,
     productsList,
-    productItem
+    productItem,
+    saleProducts
     
 } = productsSlice.actions

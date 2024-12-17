@@ -1,4 +1,4 @@
-import { categoriesHome, categoriesList, categoriesProducts, productItem, productsList,  } from "../store/ProductsSlice";
+import { categoriesHome, categoriesList, categoriesProducts, productItem, productsList, saleProducts,  } from "../store/ProductsSlice";
 
 export function fetchCategories(){
     return function(dispatch){
@@ -18,14 +18,26 @@ export function fetchHomeCategories(){
 
 export function fetchProductsFromCategori(categoryId){
     return function(dispatch){
-        fetch('http://localhost:3333/products/all ')
+        //fetch('http://localhost:3333/products/all  categori => categori.categoryId === categoryId')
 
-        // fetch('http://localhost:3333/categories/'+categoryId)
+        fetch('http://localhost:3333/categories/'+categoryId)
             .then(res => res.json())
-            .then(data => dispatch(categoriesProducts(data.filter(categori => categori.categoryId === categoryId)
+            .then(data => dispatch(categoriesProducts(data.data)
+            ));
+    }
+}
+
+
+export function fetchSaleProducts(){
+    return function(dispatch){
+        fetch('http://localhost:3333/products/all ')
+            .then(res => res.json())
+            .then(data => dispatch(saleProducts(data.filter(product => product.discont_price != null )
             )));
     }
 }
+
+
 
 export function fetchAllProducts(){
     return function(dispatch){
@@ -37,7 +49,7 @@ export function fetchAllProducts(){
 
 export function fetchProductsById(id){
     return function(dispatch){
-        fetch('http://localhost:3333/products/'+id)
+        fetch("http://localhost:3333/products/"+id)
             .then(res => res.json())
             .then(data => dispatch(productItem(data)));
     }

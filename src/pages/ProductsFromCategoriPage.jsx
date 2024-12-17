@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllProducts, fetchProductsFromCategori } from "../asyncActions/data";
+import { fetchAllProducts, fetchProductsFromCategori, fetchSaleProducts } from "../asyncActions/data";
 import { useNavigate } from "react-router-dom";
 
 
@@ -11,29 +11,26 @@ function ProductsFromCategoriPage(props) {
 
 
   const products = useSelector(store =>store.products.data)
-
+  // const products = useSelector(store =>store.products.product)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
-    
-    if (type === 'all'){
+    if (type === 'all')
+      {
       dispatch(fetchAllProducts())
-      console.log('first')
-      } else if (type === 'sale'){
-      dispatch(fetchProductsFromCategori())
-      console.log('seccond')
-
-      } else if (type ==='category'){
-        dispatch(fetchProductsFromCategori(products.categoryId))
-        console.log('therd')
-
-  }
+      console.log(type)
+    } 
+    else if (type === 'sale')
+      {
+      dispatch(fetchSaleProducts())
+      console.log(type)
+    }
    },[])
 
 
   return (
-      <div>
+      <div className="mainContent">
         
         <h4>ProductsFromCategoriPage</h4>
           <div>
@@ -41,7 +38,7 @@ function ProductsFromCategoriPage(props) {
             {products.map(products => (
               <li
                 key={products.id}
-                onClick={() => navigate('/products/:id')}
+                onClick={() => navigate("/products/"+products.id)}
               >
                 <img width={100} src={'http://localhost:3333'+products.image}/>
                <p> {products.title} </p> 
