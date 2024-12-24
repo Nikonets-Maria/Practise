@@ -18,7 +18,7 @@ body{
 .mainContent{
   
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   width: 95%;
 }
@@ -62,22 +62,20 @@ body{
   border: none;
   width: 50%;
   margin: 10px;
+  input{
+    color: #FFFFFF;
+    border: #FFFFFF 1px;
+    border-radius: 10px;
+    width: 90%;
+    height: 50px;
+    margin: 7px;
+    
+  }
   button{
     background-color: #FFFFFF;
     color: black;
   }
 }
-
-input{
-  color: #FFFFFF;
-  border: #FFFFFF 1px;
-  border-radius: 10px;
-  width: 90%;
-  height: 50px;
-  margin: 7px;
-  
-}
-
 
 
 .baner{
@@ -172,7 +170,14 @@ button{
   }
 }
 
-
+.filter{
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  input{
+    width: 70%;
+  }
+}
 
 a {
   color: black;

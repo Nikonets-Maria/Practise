@@ -31,7 +31,8 @@ return (
              <p> {data.title} </p> 
              <p> ${data.price} </p>
              <p> {data.description}</p>
-             <button> Add to cart </button>
+             <button> Add to cart </button> 
+             {/* колличество из счетчика , счетчик может быть обычным состоянием, если продукта в корзине не существует добавляем продукт как новый элемент массива, если есть увеличеваем количество в продукте, проверка вс редьюсере */}
              <button>+</button>
              <p>num1</p>
              <button>-</button>

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories, fetchHomeCategories, fetchProductsFromCategori, fetchSaleProducts } from "../asyncActions/data";
+import { fetchCategories, fetchHomeCategories, fetchProductsById, fetchProductsFromCategori, fetchSaleForHomeProducts, fetchSaleProducts } from "../asyncActions/data";
 import { useEffect } from "react";
 import OffForm from "../components/OffForm";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +18,7 @@ function HomePage() {
     dispatch(fetchHomeCategories())
   }, [])
   useEffect(() => {
-    dispatch(fetchSaleProducts())
+    dispatch(fetchSaleForHomeProducts())
   }, [])
 
 
@@ -66,9 +66,8 @@ function HomePage() {
               <li
                 key={products.id}
                 onClick={() =>{
-                  navigate('/products/all')
-                  dispatch(fetchProductsFromCategori(products.id))
-                  // navigate('/products/all')
+                  navigate('/products/'+products.id)
+                  dispatch(fetchProductsById(products.id))
                 }}
               >
                 {products.title}

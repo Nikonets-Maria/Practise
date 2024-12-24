@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function AllCategoriesPage() {
 
   const navigate = useNavigate()
-  const categories = useSelector(store => store.products.data)
+  const categories = useSelector(store => store.products.category)
 
   const dispatch = useDispatch()
 
@@ -23,8 +23,8 @@ function AllCategoriesPage() {
               <li
                 key={categori.id}
                 onClick={() =>{
+                  navigate('/products/category')
                   dispatch(fetchProductsFromCategori(categori.id))
-                  // navigate('/products/all')
                 }}
                 >
                 {categori.title}

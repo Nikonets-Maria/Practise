@@ -1,4 +1,4 @@
-import { categoriesHome, categoriesList, categoriesProducts, productItem, productsList, saleProducts,  } from "../store/ProductsSlice";
+import { categoriesHome, categoriesHomeList, categoriesList, categoriesProducts, homeItemContent, productItem, productsList, saleProducts,  } from "../store/ProductsSlice";
 
 export function fetchCategories(){
     return function(dispatch){
@@ -12,7 +12,7 @@ export function fetchHomeCategories(){
     return function(dispatch){
         fetch('http://localhost:3333/categories/all')
             .then(res => res.json())
-            .then(data => dispatch(categoriesHome(data)));
+            .then(data => dispatch(categoriesHomeList(data)));
     }
 }
 
@@ -22,28 +22,37 @@ export function fetchProductsFromCategori(categoryId){
 
         fetch('http://localhost:3333/categories/'+categoryId)
             .then(res => res.json())
-            .then(data => dispatch(categoriesProducts(data.data)
+            .then(data => dispatch(categoriesProducts(data.data.map(data => ({...data, isShow:true})))
             ));
     }
 }
+
 
 
 export function fetchSaleProducts(){
     return function(dispatch){
         fetch('http://localhost:3333/products/all ')
             .then(res => res.json())
-            .then(data => dispatch(saleProducts(data.filter(product => product.discont_price != null )
-            )));
+            .then(data => dispatch(saleProducts(data.filter(product => product.discont_price != null ).map(product => ({...product, isShow:true}))))
+            );
     }
 }
 
-
+export function fetchSaleForHomeProducts(){
+    return function(dispatch){
+        fetch('http://localhost:3333/products/all ')
+            .then(res => res.json())
+            .then(data => dispatch(homeItemContent(data.filter(product => product.discont_price != null )
+            )));
+    }
+}
 
 export function fetchAllProducts(){
     return function(dispatch){
         fetch('http://localhost:3333/products/all ')
             .then(res => res.json())
-            .then(data => dispatch(productsList(data)));
+            .then(data => dispatch(productsList(data.map(product => ({...product, isShow:true})))))
+
     }
 }
 
