@@ -33,7 +33,6 @@ function ProductsFromCategoriPage(props) {
   return (
       <div className="mainContent">
         
-        <h4>ProductsFromCategoriPage</h4> 
         <div className="filter">
           <form className="filterForm">
             <label>
@@ -66,7 +65,7 @@ function ProductsFromCategoriPage(props) {
             {filtredProducts.map(products => (
               
               <li
-              className="listContent"
+              className="productListContent"
                 key={products.id}
                 onClick={() =>{
                   navigate('/products/'+products.id)

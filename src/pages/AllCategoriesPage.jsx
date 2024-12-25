@@ -16,7 +16,6 @@ function AllCategoriesPage() {
 
     return (
       <div>
-          <h4>AllCategoriesPage</h4>
           <div>
           <ul className="categoriesList">
             {categories.map(categori => (
