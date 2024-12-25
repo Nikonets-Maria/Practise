@@ -30,6 +30,8 @@ function HomePage() {
             
             <button>Check out</button>
           </div>
+        <div className="homeContent">
+          
           <div className="categoriesListHome">
             
             <div className="lineBtn">
@@ -57,24 +59,33 @@ function HomePage() {
           <div>
             <OffForm/>
           </div>
-          <div>
 
-            <h1>sale</h1>
+          <div>
+          <div className="lineBtn">
+            <h1>Sale</h1>
+            <hr className="line"></hr>
+            <button onClick={() => navigate('/products/sale')} className="categoriBtn" >All sales</button>
+          </div>
 
             <ul className="saleList">
             {saleproducts.map(products => (
               <li
+              className="listContent"
                 key={products.id}
                 onClick={() =>{
                   navigate('/products/'+products.id)
                   dispatch(fetchProductsById(products.id))
                 }}
               >
-                {products.title}
+                
                 <img width={250} src={'http://localhost:3333'+products.image}/>
+                <p> {products.title}</p> 
+                <h3> ${products.discont_price}</h3>
+                <p> ${products.price}</p>
               </li>
             ))}
           </ul>
+          </div>
           </div>
       </div>
     );

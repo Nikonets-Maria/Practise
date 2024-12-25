@@ -1,10 +1,12 @@
 
 
+import { useNavigate } from 'react-router-dom';
 import handsImg from '../images/offImg.png'
+import { Form } from './Form';
 
 
 function OffForm() {
-
+  const navigate = useNavigate()
     return (
       <div className="offForm">
         <h1>5% off on the first order</h1>
@@ -24,6 +26,12 @@ function OffForm() {
               </li>
               <li>
                 <input type="submit" name="submit" id="submitl_1" value="Get a discount"/>
+              </li>
+              <li>
+                <button onClickonClick={() =>{
+                  <Form/>
+                  // navigate('/products/all')
+                }}>Some Btn</button>
               </li>
             </ul>
             </fieldset>

@@ -22,7 +22,7 @@ export function fetchProductsFromCategori(categoryId){
 
         fetch('http://localhost:3333/categories/'+categoryId)
             .then(res => res.json())
-            .then(data => dispatch(categoriesProducts(data.data.map(data => ({...data, isShow:true})))
+            .then(data => dispatch(categoriesProducts(data.data.map(data => ({...data, isShow:true, isInCart:false})))
             ));
     }
 }
@@ -33,7 +33,7 @@ export function fetchSaleProducts(){
     return function(dispatch){
         fetch('http://localhost:3333/products/all ')
             .then(res => res.json())
-            .then(data => dispatch(saleProducts(data.filter(product => product.discont_price != null ).map(product => ({...product, isShow:true}))))
+            .then(data => dispatch(saleProducts(data.filter(product => product.discont_price != null ).map(product => ({...product, isShow:true, isInCart:false}))))
             );
     }
 }
@@ -51,7 +51,7 @@ export function fetchAllProducts(){
     return function(dispatch){
         fetch('http://localhost:3333/products/all ')
             .then(res => res.json())
-            .then(data => dispatch(productsList(data.map(product => ({...product, isShow:true})))))
+            .then(data => dispatch(productsList(data.map(product => ({...product, isShow:true, isInCart:false})))))
 
     }
 }

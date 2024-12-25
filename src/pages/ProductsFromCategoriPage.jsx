@@ -35,7 +35,7 @@ function ProductsFromCategoriPage(props) {
         
         <h4>ProductsFromCategoriPage</h4> 
         <div className="filter">
-          <form>
+          <form className="filterForm">
             <label>
                 Price  
                 <input id='minPrice' type="number" min="0" placeholder="from" onChange={()=>{dispatch(filterProductsByMinPrice(document.getElementById('minPrice').value))}} /> 
@@ -45,15 +45,18 @@ function ProductsFromCategoriPage(props) {
                 <input id='maxPrice' type="number" min="0" placeholder="to" onChange={()=>{dispatch(filterProductsByMaxPrice(document.getElementById('maxPrice').value))}} /> 
             </label>
             <label onChange={()=>{dispatch(filterProductsByDiscount(products))}}>
-              Discounted items 
+              <p>Discounted items </p> 
               <input type="checkbox" />
-          </label>             
-            <select id="sortPrtion" onChange={() => {dispatch(sortProductsByMinPrice())}}>
+          </label> 
+              <p>Sorted</p>
+              <select id="sortPrtion" onChange={() => {dispatch(sortProductsByMinPrice())}}>
               <option onChange={() => {dispatch( sortProductsById())}}>by default id</option>
               <option onChange={() => {dispatch( sortProductsByDate())}}>newest date</option>
               <option onChange={() => {dispatch( sortProductsByMaxPrice())}}>price: high-low</option>
-              <option onInput={() => {dispatch( sortProductsByMinPrice())}}>price: low-high</option>
+              <option onInput={() => {dispatch( sortProductsByMinPrice(products.p))}}>price: low-high</option>
             </select>
+             
+          
           </form>
         </div>
 
@@ -63,6 +66,7 @@ function ProductsFromCategoriPage(props) {
             {filtredProducts.map(products => (
               
               <li
+              className="listContent"
                 key={products.id}
                 onClick={() =>{
                   navigate('/products/'+products.id)

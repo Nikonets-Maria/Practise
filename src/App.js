@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, Form} from 'react-router-dom'
 
 
 import Header from "./components/Header";
@@ -26,6 +26,8 @@ function App() {
             <Route path="/cart" element={<CartPage/>}/>
             <Route path="*" element={<NotFoundPage/>}/>
             <Route path="/products/:id" element={<ProductItemPage/>}/>
+            <Route path="/modal" element={<Form/>}/>
+
         </Routes> 
         <Footer/>
       </div>

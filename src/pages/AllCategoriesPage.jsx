@@ -27,8 +27,8 @@ function AllCategoriesPage() {
                   dispatch(fetchProductsFromCategori(categori.id))
                 }}
                 >
-                {categori.title}
-                <img width={250} src={'http://localhost:3333'+categori.image}/>
+                <img src={'http://localhost:3333'+categori.image}/>
+                <p> {categori.title}</p> 
               </li>
             ))}
           </ul>

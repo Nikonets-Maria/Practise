@@ -38,30 +38,73 @@ const productsSlice = createSlice({
             state.data = action.payload
         },
 
+        // filterProductsByMinPrice(state, action) {
+                        
+        //     const updatedData = state.data.map(product => {
+        //     return {
+        //         ...product, isShow: product.price >= action.payload
+        //         };
+        //     });
+        //     return {
+        //         ...state,
+        //         data: updatedData
+        //     };
+        // },
+        
+
         filterProductsByMinPrice(state, action){
-            state.data = state.data.filter(product => product.price >= action.payload )
+            state.data = state.data.map(product => {
+            return {
+                ...product, isShow: product.price >= action.payload
+                };
+            });
+            // return {
+            //     ...state,
+            //     data: updatedData
+            // };
+        // state.data.map(product => ({...product, isShow: product.price >= action.payload}))
+
+            // if (state.data.map(product => product.price >= action.payload))
+            // {
+            //     (state.data.map(product => product.isShow = true))
+            // } else{ 
+            //     (state.data.map(product => product.isShow = false))
+            // }
+            // state.data = state.data.filter(product => product.price >= action.payload )
         },
 
         filterProductsByMaxPrice(state, action){
-            state.data = state.data.filter(product => product.price <= action.payload )
-        },
+            // state.data = state.data.filter(product => product.price <= action.payload )
+            state.data = state.data.map(product => {
+                return {
+                    ...product, isShow: product.price <= action.payload
+                    };
+                });
+            },
 
         filterProductsByDiscount(state, action){
-            state.data = state.data
-            console.log('isShow000')
+            // state.data = state.data
+            // console.log('isShow000')
 
-            console.log(state.data)
+            // console.log(state.data)
 
-            if(state.data.discont_price != null )
-            {
-                console.log('isShow110')
-                state.product.isShow = false
-            }
+            // if(state.data.discont_price != null )
+            // {
+            //     console.log('isShow110')
+            //     state.product.isShow = false
+            // }
             // state.data = state.data.filter(product => product.discont_price != null )
 
-        },
+            state.data = state.data.map(product => {
+                return {
+                    ...product, isShow: product.discont_price != null
+                    };
+                });
+            },
+
         
         sortProductsByMinPrice(state){
+             
             state.data = state.data.sort((a,b) => a.price - b.price)
 
         },
@@ -80,6 +123,17 @@ const productsSlice = createSlice({
         addToCart(state){
             //изменить состояние в корзине(?) по id на true
             // state.cart.productList 
+            // state.cart.productList.map(productList => ({...productList, action.payload}))
+            // state.cart.productList = state.data.map(product => {
+            state.cart.productList = state.product.map(product => {
+
+                console.log('productAdded')
+
+                return {
+                    ...product, isInCart: true
+                    };
+
+                });
         }
     }
 })
@@ -102,7 +156,8 @@ export const {
     sortProductsByMinPrice,
     sortProductsByMaxPrice,
     sortProductsByDate,
-    sortProductsById
+    sortProductsById,
+    addToCart
 
     
 } = productsSlice.actions
