@@ -52,8 +52,8 @@ function ProductsFromCategoriPage(props) {
     <div className="mainContent">
       <div className="filter">
         <form className="filterForm">
-          <label>
-            Price  
+        <label>
+           Price
             <input id='minPrice' type="number" min="0" placeholder="from" 
               onChange={() => {
                 dispatch(filterProductsByMinPrice(
@@ -69,19 +69,17 @@ function ProductsFromCategoriPage(props) {
               }} 
             /> 
           </label>
-          <label>
-            <p>Discounted items </p> 
-            <input 
-                type="checkbox" 
-                onChange={(e) => { 
-                    dispatch(filterProductsByDiscount(e.target.checked)); // Передаем состояние чекбокса в действие
-                }} 
-            />
-        </label>
- 
-          <p>Sorted</p>
+          <label for="checkbox">Discounted items</label>
+          <input 
+              type="checkbox" 
+              id="checkbox"
+              onChange={(e) => { 
+                  dispatch(filterProductsByDiscount(e.target.checked)); // Передаем состояние чекбокса в действие
+              }} />
+      
+         <label for="sortOption">Sorted</label>  
           <select id="sortOption" onChange={handleSortChange}>
-            <option value="default">by default id</option>
+            <option value="default">by default</option>
             <option value="newest">newest date</option>
             <option value="highLow">price: high-low</option>
             <option value="lowHigh">price: low-high</option>
@@ -102,7 +100,6 @@ function ProductsFromCategoriPage(props) {
               <img width={100} src={'http://localhost:3333' + product.image} alt={product.title} />
               <p>{product.title}</p> 
               <p>${product.price}</p>
-              
               <button onClick={(e) => handelAddToCart(e, product)}> Add to cart </button> 
               <p>{product.discont_price}</p>
             </li>

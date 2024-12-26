@@ -128,6 +128,10 @@ const productsSlice = createSlice({
                      count
                 })
             }
+        },
+
+        deliteProductById(state, action){
+            state.cart.productList = state.cart.productList.filter(elem => elem.id !== action.payload)
         }
     }
 })
@@ -153,7 +157,8 @@ export const {
     sortProductsById,
     addToCart,
     addProductToCart,
-    productDetailByid
+    productDetailByid,
+    deliteProductById
 
     
 } = productsSlice.actions

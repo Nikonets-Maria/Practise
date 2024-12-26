@@ -35,7 +35,6 @@ return (
              <div className="productInfo"> 
                 <h3> {product.title} </h3> 
                 <h2> ${product.price} </h2>
-                <h2>$ {product.discont_price}</h2>
                 <div className="countner">
                 <button onClick={() => setCount(count-1)}>-</button>
                   <p>{count}</p>

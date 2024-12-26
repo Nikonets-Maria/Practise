@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchProductsById } from '../asyncActions/data';
 import { Modal } from '../components/Modal';
+import { deliteProductById } from '../store/ProductsSlice';
 
 function CartPage() {
   const navigate = useNavigate()
@@ -37,7 +38,7 @@ function CartPage() {
                 <button>-</button>
                <p> ${product.price} </p>
               <p>$ {product.discont_price} </p>
-              <button>X</button> 
+              <button onClick={() => dispatch(deliteProductById(product.id))}>X</button> 
 
               </li>
             ))}
