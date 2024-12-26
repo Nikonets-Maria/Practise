@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react";
 
 const initialState = {
     data: [],
     category:[],
     product: [],
-    productsOnPage:[], //в экшене где получение данных предусмотреть свойство из шоу по умолчанию труе менять в филтрации его
+    productDetail:{}, //в экшене где получение данных предусмотреть свойство из шоу по умолчанию труе менять в филтрации его
     cart:{
         productList:[],
         totalCount: 0,
@@ -36,6 +37,10 @@ const productsSlice = createSlice({
         },
         saleProducts(state, action){
             state.data = action.payload
+        },
+        productDetailByid(state, action){
+
+            state.productDetail = action.payload[0]
         },
 
         // filterProductsByMinPrice(state, action) {
@@ -82,22 +87,13 @@ const productsSlice = createSlice({
                 });
             },
 
-        filterProductsByDiscount(state, action){
-            // state.data = state.data
-            // console.log('isShow000')
-
-            // console.log(state.data)
-
-            // if(state.data.discont_price != null )
-            // {
-            //     console.log('isShow110')
-            //     state.product.isShow = false
-            // }
-            // state.data = state.data.filter(product => product.discont_price != null )
-
-            state.data = state.data.map(product => {
-                return {
-                    ...product, isShow: product.discont_price != null
+            filterProductsByDiscount(state, action) {
+                const isChecked = action.payload;
+            
+                state.data = state.data.map(product => {
+                    return {
+                        ...product,
+                        isShow: isChecked ? product.discont_price != null : true 
                     };
                 });
             },
@@ -120,20 +116,18 @@ const productsSlice = createSlice({
             state.data = state.data.sort((a,b) => a.id - b.id )
 
         },
-        addToCart(state){
-            //изменить состояние в корзине(?) по id на true
-            // state.cart.productList 
-            // state.cart.productList.map(productList => ({...productList, action.payload}))
-            // state.cart.productList = state.data.map(product => {
-            state.cart.productList = state.product.map(product => {
-
-                console.log('productAdded')
-
-                return {
-                    ...product, isInCart: true
-                    };
-
-                });
+        addProductToCart(state, action){
+            const {id, count} = action.payload
+            const findProduct = state.product.find((product) => product.id === id)
+            if (findProduct){
+                findProduct.count+=count
+            }
+            else{
+                state.cart.productList.push({
+                    ...findProduct,
+                     count
+                })
+            }
         }
     }
 })
@@ -157,7 +151,9 @@ export const {
     sortProductsByMaxPrice,
     sortProductsByDate,
     sortProductsById,
-    addToCart
+    addToCart,
+    addProductToCart,
+    productDetailByid
 
     
 } = productsSlice.actions

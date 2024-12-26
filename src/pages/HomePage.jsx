@@ -32,16 +32,16 @@ function HomePage() {
           </div>
         <div className="homeContent">
           
-          <div className="categoriesListHome">
+          <div>
             
             <div className="lineBtn">
               <h2>Categories</h2>
               <hr className="line"></hr>
               <button onClick={() => navigate('/allcategories')} className="categoriBtn" >All categories</button>
             </div>
-            <ul className="categoriesList">
+            <ul  className="categoriesListHome">
             {categories.map(categori => (
-              <li
+              <li className="categoriesList"
                 key={categori.id}
                 onClick={() =>{
                   navigate('/products/all')
@@ -49,8 +49,9 @@ function HomePage() {
                   // navigate('/products/all')
                 }}
               >
-                {categori.title}
                 <img width={250} src={'http://localhost:3333'+categori.image}/>
+                {categori.title}
+
               </li>
             ))}
           </ul>

@@ -2,49 +2,75 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchProductsById } from '../asyncActions/data';
+import { Modal } from '../components/Modal';
 
 function CartPage() {
   const navigate = useNavigate()
   const cartProducts = useSelector(store =>store.products.cart.productList)
-  const filtredProducts = cartProducts.filter(elem => elem.isInCart === true)
   const dispatch = useDispatch()
   
 
     return (
-      <div>
-        <h1>Shopping cart</h1>
-        <p>Looks like you have no items in your basket currently.</p>
-        <button onClick={() => navigate('/products/all')}>Continue Shopping</button>
-        {/* кнопка крестик для удаления по id */}
-
-
+      <div >
         <div>
+          <h1>Shopping cart</h1>
+          <p>Looks like you have no items in your basket currently.</p> 
+          {/* появление только в пустой корзин */}
+          <button onClick={() => navigate('/products/all')}>Continue Shopping</button>
+        </div>
+        
+
+        <div className='cartPlase'>
           <ul className="cartList">
-            {filtredProducts.map(products => (
+            {cartProducts.map(product => (
               
               <li
-              className='cartProduct'
-                key={products.id}
+              className='countner'
+                key={product.id}
                 onClick={() =>{
-                  navigate('/products/'+products.id)
-                  // dispatch(fetchProductsById(products.id))
-                }}
-              >
-              
-                <img width={100} src={'http://localhost:3333'+products.image}/>
-               <p> {products.title} </p>
-               <button>X</button> 
+                  navigate('/products/'+product.id)
+                }}>
+                <img width={100} src={'http://localhost:3333'+product.image}/>
+               <p> aaaaa {product.title} </p>
                 <button>+</button>
                 <p>count</p>
                 <button>-</button>
+               <p> ${product.price} </p>
+              <p>$ {product.discont_price} </p>
+              <button>X</button> 
 
-               <p> ${products.price} </p>
-              <p> {products.discont_price} </p>
               </li>
             ))}
           </ul>
-          <form> Cart Form</form>
+          
+        <div className="cartDiscountForm">
+          <h1>Order details</h1>
+          <h2>{} items</h2>
+          <h2>Total</h2>
+          <h1>$</h1>
+          <form className='discountAutoForm'>
+          <fieldset>
+            <ul>
+              <li>
+              <input type="text" name="name" id="name_1" placeholder="Name" />
+              </li>
+              <li>
+              <input type="tel" name="phone" id="phone_1" placeholder="Phone number" />
+              </li>
+              <li>
+              <input type="email" name="email" id="email_1" placeholder="Email" />
+              </li>
+              <li>
+                <input type="submit" name="submit" id="submitl_1" value="order"/>
+                <button>Order</button>
+              </li>
+            </ul>
+            </fieldset>
+          </form>
+          
+      </div>
           </div>
+            <Modal/>
 
       </div>
     );

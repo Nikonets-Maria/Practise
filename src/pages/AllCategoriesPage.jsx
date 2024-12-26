@@ -17,9 +17,9 @@ function AllCategoriesPage() {
     return (
       <div>
           <div>
-          <ul className="categoriesList">
+          <ul className="listCtategori">
             {categories.map(categori => (
-              <li
+              <li className="categoriesList"
                 key={categori.id}
                 onClick={() =>{
                   navigate('/products/category')

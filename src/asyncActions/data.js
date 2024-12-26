@@ -1,4 +1,4 @@
-import { categoriesHome, categoriesHomeList, categoriesList, categoriesProducts, homeItemContent, productItem, productsList, saleProducts,  } from "../store/ProductsSlice";
+import { categoriesHome, categoriesHomeList, categoriesList, categoriesProducts, homeItemContent, productDetailByid, productItem, productsList, saleProducts,  } from "../store/ProductsSlice";
 
 export function fetchCategories(){
     return function(dispatch){
@@ -60,7 +60,10 @@ export function fetchProductsById(id){
     return function(dispatch){
         fetch("http://localhost:3333/products/"+id)
             .then(res => res.json())
-            .then(data => dispatch(productItem(data)));
+            .then(data => dispatch(productDetailByid(data)));
     }
 }
+
+
+
 

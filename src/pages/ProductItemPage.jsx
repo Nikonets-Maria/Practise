@@ -1,57 +1,57 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { fetchProductsById } from "../asyncActions/data"
-import { addToCart } from "../store/ProductsSlice"
+import { addProductToCart, addToCart } from "../store/ProductsSlice"
 
 function ProductItemPage() {
 
-const productData = useSelector(store => store.products.product)
+const product = useSelector(store => store.products.productDetail)
 
 
 const dispatch = useDispatch()
 const navigate = useNavigate()
+const {id} = useParams()
 
-// useEffect(() => {
-//   dispatch(fetchProductsById(1))
+const [count, setCount] = useState(1)
 
-//  },[])
+useEffect(() => {
+  dispatch(fetchProductsById(id))
+
+ },[])
 
 
 return (
     <div>
       
       
-        <ul >
-          {productData.map(data => (
+        <ul>
+      
             <li 
             className="productsItem"
-              key={data.id}
             >
-            <img width={100} src={'http://localhost:3333'+data.image}/>
+            <img width={100} src={'http://localhost:3333'+product.image}/>
              
              <div className="productInfo"> 
-                <h3> {data.title} </h3> 
-                <h2> ${data.price} </h2>
-                <h2>$ {data.discont_price}</h2>
+                <h3> {product.title} </h3> 
+                <h2> ${product.price} </h2>
+                <h2>$ {product.discont_price}</h2>
                 <div className="countner">
-                  <button >+</button>
-                  <p>num1</p>
-                  <button>-</button>
-                  <button onClick={() => dispatch(addToCart())}> Add to cart </button> 
+                <button onClick={() => setCount(count-1)}>-</button>
+                  <p>{count}</p>
+                  <button onClick={() => setCount(count+1)}>+</button>
+                </div>
+                <button onClick={() => dispatch(addProductToCart({id: product.id, count:count}))}> Add to cart </button> 
                   {/* колличество из счетчика , счетчик может быть обычным состоянием, если продукта в корзине не существует добавляем продукт как новый элемент массива, если есть увеличеваем количество в продукте, проверка вс редьюсере */}
                   
-                </div>
-                
                 <h4> Description </h4>
-                <p> {data.description}</p>
+                <p> {product.description}</p>
                 
 
              </div>
             
 
             </li>
-          ))}
         </ul>
         
 

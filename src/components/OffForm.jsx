@@ -27,12 +27,6 @@ function OffForm() {
               <li>
                 <input type="submit" name="submit" id="submitl_1" value="Get a discount"/>
               </li>
-              <li>
-                <button onClickonClick={() =>{
-                  <Form/>
-                  // navigate('/products/all')
-                }}>Some Btn</button>
-              </li>
             </ul>
             </fieldset>
           </form>
