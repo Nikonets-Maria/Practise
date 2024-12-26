@@ -8,8 +8,9 @@ function NotFoundPage() {
 
   const navigate = useNavigate()
     return (
-      <div>
+      <div className='notFindPageContent'>
           <img width={500} src={NotFoundImg}/>
+       <h1>Page Not Found</h1>
         <p>We're sorry, the page you reqested could not be found.
           Please go back to the homepage
         </p>

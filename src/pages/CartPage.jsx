@@ -7,7 +7,7 @@ import { deliteProductById } from '../store/ProductsSlice';
 
 function CartPage() {
   const navigate = useNavigate()
-  const cartProducts = useSelector(store =>store.products.cart.productList)
+  const cartProducts = useSelector(store =>store.products.cart.productList);
   const dispatch = useDispatch()
   
 
@@ -32,11 +32,11 @@ function CartPage() {
                   navigate('/products/'+product.id)
                 }}>
                 <img width={100} src={'http://localhost:3333'+product.image}/>
-               <p> aaaaa {product.title} </p>
+               <p> title {product.title} </p>
                 <button>+</button>
                 <p>count</p>
                 <button>-</button>
-               <p> ${product.price} </p>
+               <p> $ price {product.price} </p>
               <p>$ {product.discont_price} </p>
               <button onClick={() => dispatch(deliteProductById(product.id))}>X</button> 
 
